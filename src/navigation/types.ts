@@ -21,6 +21,7 @@ export type MainTabParamList = {
 export type RootStackParamList = {
   Auth: undefined;
   Main: undefined;
+  ProductDetail: { productId: string };
 };
 
 // ─── Screen props helpers ─────────────────────────────────────────────────────

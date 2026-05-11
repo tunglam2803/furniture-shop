@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 
-interface FavoriteState {
+interface FavouriteState {
   favorites: any[];
   toggleFavorite: (product: any) => void;
 }
 
-export const useFavoriteStore = create<FavoriteState>((set) => ({
+export const useFavouriteStore = create<FavouriteState>((set) => ({
   favorites: [],
   toggleFavorite: (product) => set((state) => {
     const isExist = state.favorites.find((item) => item.id === product.id);

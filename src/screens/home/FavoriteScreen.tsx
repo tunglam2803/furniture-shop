@@ -1,15 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-
-const FAVORITE_DATA = [
-  { id: '1', name: 'Coffee Table', price: 20.0, image: 'https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=1000' },
-  { id: '2', name: 'Coffee Chair', price: 25.0, image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?q=80&w=1000' },
-  { id: '3', name: 'Minimal Stand', price: 50.0, image: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?q=80&w=1000' },
-];
+// 1. IMPORT STORE CỦA HUY VÀO
+import { useFavouriteStore } from '../../store/favoriteStore'; 
 
 const FavoriteScreen = ({ navigation }: any) => {
-  
+  // 2. LẤY DỮ LIỆU THẬT TỪ STORE
+  const { favorites, toggleFavorite } = useFavouriteStore();
+
   const renderItem = ({ item }: any) => (
     <View style={styles.itemContainer}>
       <Image source={{ uri: item.image }} style={styles.itemImage} />
@@ -20,12 +18,15 @@ const FavoriteScreen = ({ navigation }: any) => {
       </View>
 
       <View style={styles.actionButtons}>
-        {/* Nút xóa hình tròn viền xám */}
-        <TouchableOpacity style={styles.removeBtn}>
+        {/* Nút xóa - Bấm vào đây để xóa khỏi danh sách */}
+        <TouchableOpacity 
+          style={styles.removeBtn} 
+          onPress={() => toggleFavorite(item)}
+        >
           <Ionicons name="close-circle-outline" size={24} color="#303030" />
         </TouchableOpacity>
         
-        {/* Nút thêm vào giỏ nền đen nhỏ */}
+        {/* Nút thêm vào giỏ */}
         <TouchableOpacity style={styles.addSmallBtn}>
           <Ionicons name="bag-add-outline" size={20} color="white" />
         </TouchableOpacity>
@@ -35,27 +36,36 @@ const FavoriteScreen = ({ navigation }: any) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* HEADER GIỐNG MÀN HOME */}
+      {/* HEADER */}
       <View style={styles.header}>
         <Ionicons name="search" size={24} color="#909090" />
         <Text style={styles.headerTitle}>Favorites</Text>
         <Ionicons name="cart-outline" size={24} color="#909090" />
       </View>
 
+      {/* DANH SÁCH - DÙNG DATA TỪ STORE */}
       <FlatList
-        data={FAVORITE_DATA}
+        data={favorites} // <--- Đổi từ FAVORITE_DATA sang favorites
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
+        // Hiện thông báo nếu chưa có món nào
+        ListEmptyComponent={() => (
+          <View style={{ alignItems: 'center', marginTop: 100 }}>
+            <Text style={{ color: '#909090' }}>No favorites yet.</Text>
+          </View>
+        )}
       />
 
-      {/* NÚT ADD ALL TO MY CART */}
-      <TouchableOpacity style={styles.addAllBtn}>
-        <Text style={styles.addAllText}>Add all to my cart</Text>
-      </TouchableOpacity>
+      {/* NÚT ADD ALL TO MY CART (Chỉ hiện khi có sản phẩm) */}
+      {favorites.length > 0 && (
+        <TouchableOpacity style={styles.addAllBtn}>
+          <Text style={styles.addAllText}>Add all to my cart</Text>
+        </TouchableOpacity>
+      )}
 
-      {/* BOTTOM NAVIGATION (Fake cho đúng layout) */}
+      {/* BOTTOM NAVIGATION */}
       <View style={styles.bottomTab}>
         <TouchableOpacity onPress={() => navigation.navigate('Home')}>
             <Ionicons name="home-outline" size={24} color="#909090" />
@@ -77,9 +87,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', 
     paddingHorizontal: 20, paddingVertical: 15 
   },
-  headerTitle: { fontSize: 18, fontWeight: 'bold', color: '#303030' },
+  headerTitle: { fontSize: 18, fontWeight: 'bold', color: '#303030', textTransform: 'uppercase' },
   
-  listContent: { paddingHorizontal: 20, paddingBottom: 160 }, // Padding rộng để không bị nút che
+  listContent: { paddingHorizontal: 20, paddingBottom: 160 },
   itemContainer: { 
     flexDirection: 'row', alignItems: 'center', 
     paddingVertical: 14, borderBottomWidth: 1, borderBottomColor: '#EEE' 

@@ -66,11 +66,12 @@ export default function SignupScreen({ navigation }: Props) {
       // TODO: connect to auth API
       await new Promise(r => setTimeout(r, 1200));
       // On success → navigate to Main
-      // navigation.replace('Main');
+       
+       (navigation as any).navigate('Main');
     } finally {
       setLoading(false);
     }
-  }
+  } 
 
   const setField = (field: keyof FormState) =>
     (value: string) => setForm(f => ({ ...f, [field]: value }));

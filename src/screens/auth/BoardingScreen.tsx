@@ -27,7 +27,7 @@ export default function BoardingScreen({ navigation }: Props) {
 
       {/* Hero image — replace uri with local asset when available */}
       <ImageBackground
-        source={{ uri: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800' }}
+        source={require('../../../assets/boarding.jpg')}
         style={styles.image}
         resizeMode="cover"
       >
@@ -72,6 +72,7 @@ export default function BoardingScreen({ navigation }: Props) {
             label="Get Started"
             onPress={() => navigation.navigate('Login')}
             style={styles.ctaBtn}
+            textStyle={{ color: colors.black }}
           />
 
           {/* Sign up link */}

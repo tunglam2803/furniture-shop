@@ -8,21 +8,15 @@ import spacing from '../theme/spacing';
 // ─── IMPORT HÀNG THẬT CỦA HUY Ở ĐÂY ─────────────────────────────────────────
 import HomeScreen from '../screens/home/HomeScreen';
 import FavoriteScreen from '../screens/home/FavoriteScreen';
+import CartScreen from '../screens/commerce/CartScreen';
+import ProfileScreen from '../screens/profile/ProfileScreen';
 // Nếu chưa có file thật cho Cart và Profile thì tạm thời để lại Placeholder
 import { View } from 'react-native';
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
 // Placeholder cho các màn chưa làm
-const PlaceholderScreen = ({ name }: { name: string }) => (
-  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.background }}>
-    <Text style={{ fontSize: 22, color: colors.textPrimary }}>{name}</Text>
-    <Text style={{ fontSize: 13, color: colors.textSecondary }}>Coming Soon...</Text>
-  </View>
-);
 
-const CartScreen = () => <PlaceholderScreen name="Cart" />;
-const ProfileScreen = () => <PlaceholderScreen name="Profile" />;
 
 // ─── Tab icon component ──────────────────────────────────────────────────────
 const TabIcon = ({ label, focused }: { label: string; focused: boolean }) => (

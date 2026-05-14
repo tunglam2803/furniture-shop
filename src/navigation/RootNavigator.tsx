@@ -8,6 +8,10 @@ import MainTab from './MainTab';
 import colors from '../theme/colors';
 import ProductDetailScreen from '../screens/home/ProductDetailScreen';
 
+// 1. IMPORT MÀN HÌNH CHECKOUT CỦA ÔNG VÀO ĐÂY
+import CheckoutScreen from '../screens/commerce/CheckoutScreen';
+import SuccessScreen from '../screens/commerce/SuccessScreen';
+
 const Root = createNativeStackNavigator<RootStackParamList>();
 
 export default function RootNavigator() {
@@ -43,6 +47,10 @@ export default function RootNavigator() {
         <Root.Screen name="Auth" component={AuthStack} />
         <Root.Screen name="Main" component={MainTab} />
         <Root.Screen name="ProductDetail" component={ProductDetailScreen} />
+        
+        {/* 2. ĐĂNG KÝ MÀN HÌNH CHECKOUT VÀO STACK */}
+        <Root.Screen name="Checkout" component={CheckoutScreen} />
+        <Root.Screen name="Success" component={SuccessScreen} />
       </Root.Navigator>
     </NavigationContainer>
   );

@@ -21,7 +21,9 @@ export type MainTabParamList = {
 export type RootStackParamList = {
   Auth: undefined;
   Main: undefined;
-  ProductDetail: { productId: string };
+  ProductDetail: { productId: string }; // Của Huy truyền param
+  Checkout: undefined;                  // <--- ĐÃ THÊM MÀN HÌNH CỦA ÔNG VÀO ĐÂY
+  Success: undefined;                   // <--- ĐÃ THÊM MÀN HÌNH CỦA ÔNG VÀO ĐÂY
 };
 
 // ─── Screen props helpers ─────────────────────────────────────────────────────

@@ -56,9 +56,13 @@ export default function LoginScreen({ navigation }: Props) {
       // TODO: connect to auth API / authStore
       await new Promise(r => setTimeout(r, 1200)); // mock delay
       // On success → navigate to Main
+<<<<<<< Updated upstream
       // @ts-ignore
 navigation.getParent()?.navigate('Main');
       ;
+=======
+      //navigation.replace('Main');
+>>>>>>> Stashed changes
     } finally {
       setLoading(false);
     }

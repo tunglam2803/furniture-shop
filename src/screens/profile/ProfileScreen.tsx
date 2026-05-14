@@ -116,7 +116,7 @@ const ProfileScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#FFF' },
+  container: { flex: 1, backgroundColor: '#FFF', paddingTop: 10 },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 20 },
   headerTitle: { fontSize: 16, fontWeight: 'bold', textTransform: 'uppercase' },
   content: { paddingHorizontal: 20 },

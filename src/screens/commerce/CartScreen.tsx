@@ -80,7 +80,7 @@ const CartScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#F9F9F9' },
+  container: { flex: 1, backgroundColor: '#F9F9F9', paddingTop: 10 },
   header: { alignItems: 'center', paddingVertical: 15 },
   headerTitle: { fontSize: 18, fontWeight: 'bold' },
   footer: { 

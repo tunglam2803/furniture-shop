@@ -73,7 +73,7 @@ const HomeScreen = ({ navigation }: any) => {
         numColumns={2}
         keyExtractor={(item) => item.id}
         columnWrapperStyle={styles.row}
-        contentContainerStyle={{ paddingBottom: 100 }} // Tránh bị Bottom Tab che mất sản phẩm cuối
+        contentContainerStyle={{ paddingBottom: 20 }}
         renderItem={({ item }) => (
           <ProductCard 
             name={item.name} 
@@ -84,38 +84,18 @@ const HomeScreen = ({ navigation }: any) => {
         )}
         showsVerticalScrollIndicator={false}
       />
-
-      {/* BOTTOM NAVIGATION (Dạng Absolute như cũ) */}
-      <View style={styles.bottomTab}>
-        <TouchableOpacity style={styles.tabItem}>
-          <Ionicons name="home" size={24} color="black" />
-          <View style={styles.activeUnderline} />
-        </TouchableOpacity>
-        
-        <TouchableOpacity style={styles.tabItem} onPress={() => navigation.navigate('Favorite')}>
-          <Ionicons name="bookmark-outline" size={24} color="#909090" />
-        </TouchableOpacity>
-        
-        <TouchableOpacity style={styles.tabItem}>
-          <Ionicons name="notifications-outline" size={24} color="#909090" />
-        </TouchableOpacity>
-        
-        <TouchableOpacity style={styles.tabItem}>
-          <Ionicons name="person-outline" size={24} color="#909090" />
-        </TouchableOpacity>
-      </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#FFFFFF' },
+  container: { flex: 1, backgroundColor: '#FFFFFF', paddingTop: 10 },
   header: { 
     flexDirection: 'row', 
     justifyContent: 'space-between', 
     alignItems: 'center', 
     paddingHorizontal: 20, 
-    marginTop: 10 
+    marginTop: 15 
   },
   headerSmall: { fontSize: 16, color: '#909090', textTransform: 'uppercase' },
   headerLarge: { fontSize: 24, fontWeight: 'bold', color: '#303030', fontFamily: 'serif' },
@@ -123,31 +103,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between', 
     paddingHorizontal: 20 
   },
-  bottomTab: {
-    position: 'absolute', 
-    bottom: 0, 
-    left: 0, 
-    right: 0, 
-    height: 70, 
-    backgroundColor: '#FFFFFF', 
-    flexDirection: 'row', 
-    justifyContent: 'space-around', 
-    alignItems: 'center',
-    elevation: 20, 
-    shadowColor: '#000', 
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: -2 },
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-  },
-  tabItem: { alignItems: 'center' },
-  activeUnderline: { 
-    width: 4, 
-    height: 4, 
-    borderRadius: 2, 
-    backgroundColor: '#303030', 
-    marginTop: 4 
-  }
 });
 
 export default HomeScreen;

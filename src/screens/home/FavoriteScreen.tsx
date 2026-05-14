@@ -64,32 +64,19 @@ const FavoriteScreen = ({ navigation }: any) => {
           <Text style={styles.addAllText}>Add all to my cart</Text>
         </TouchableOpacity>
       )}
-
-      {/* BOTTOM NAVIGATION */}
-      <View style={styles.bottomTab}>
-        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-            <Ionicons name="home-outline" size={24} color="#909090" />
-        </TouchableOpacity>
-        <TouchableOpacity>
-            <Ionicons name="bookmark" size={24} color="black" />
-            <View style={styles.activeUnderline} />
-        </TouchableOpacity>
-        <TouchableOpacity><Ionicons name="notifications-outline" size={24} color="#909090" /></TouchableOpacity>
-        <TouchableOpacity><Ionicons name="person-outline" size={24} color="#909090" /></TouchableOpacity>
-      </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#FFFFFF' },
+  container: { flex: 1, backgroundColor: '#FFFFFF', paddingTop: 10 },
   header: { 
     flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', 
     paddingHorizontal: 20, paddingVertical: 15 
   },
   headerTitle: { fontSize: 18, fontWeight: 'bold', color: '#303030', textTransform: 'uppercase' },
   
-  listContent: { paddingHorizontal: 20, paddingBottom: 160 },
+  listContent: { paddingHorizontal: 20, paddingBottom: 80 },
   itemContainer: { 
     flexDirection: 'row', alignItems: 'center', 
     paddingVertical: 14, borderBottomWidth: 1, borderBottomColor: '#EEE' 
@@ -106,18 +93,11 @@ const styles = StyleSheet.create({
   },
 
   addAllBtn: {
-    position: 'absolute', bottom: 90, left: 20, right: 20,
+    position: 'absolute', bottom: 20, left: 20, right: 20,
     height: 56, backgroundColor: '#303030', borderRadius: 14,
     justifyContent: 'center', alignItems: 'center', elevation: 5
   },
   addAllText: { color: '#FFF', fontSize: 16, fontWeight: 'bold' },
-
-  bottomTab: {
-    position: 'absolute', bottom: 0, left: 0, right: 0, height: 70, 
-    backgroundColor: '#FFFFFF', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center',
-    elevation: 20, shadowColor: '#000', shadowOpacity: 0.1,
-  },
-  activeUnderline: { width: 4, height: 4, borderRadius: 2, backgroundColor: '#303030', marginTop: 4, alignSelf: 'center' }
 });
 
 export default FavoriteScreen;

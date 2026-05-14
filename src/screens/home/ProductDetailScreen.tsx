@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 // IMPORT STORE CỦA HUY
 import { useFavouriteStore } from '../../store/favoriteStore'; 
@@ -38,7 +38,7 @@ const DetailScreen = ({ navigation, route }: any) => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.imageSection}>
         <Image 
           source={{ uri: product.image }} 
@@ -111,7 +111,7 @@ const DetailScreen = ({ navigation, route }: any) => {
           <Text style={styles.addToCartText}>Add to cart</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

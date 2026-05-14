@@ -33,7 +33,7 @@ const SuccessScreen = ({ navigation }: any) => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#FFF' },
+  container: { flex: 1, backgroundColor: '#FFF', paddingTop: 10 },
   content: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 30 },
   title: { fontSize: 32, fontWeight: 'bold', letterSpacing: 2, marginBottom: 40 },
   iconContainer: { marginBottom: 40 },

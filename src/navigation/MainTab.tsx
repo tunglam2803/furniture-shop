@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
 import type { MainTabParamList } from './types';
 import colors from '../theme/colors';
 import spacing from '../theme/spacing';
@@ -10,20 +11,8 @@ import HomeScreen from '../screens/home/HomeScreen';
 import FavoriteScreen from '../screens/home/FavoriteScreen';
 import CartScreen from '../screens/commerce/CartScreen';
 import ProfileScreen from '../screens/profile/ProfileScreen';
-// Nếu chưa có file thật cho Cart và Profile thì tạm thời để lại Placeholder
-import { View } from 'react-native';
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
-
-// Placeholder cho các màn chưa làm
-
-
-// ─── Tab icon component ──────────────────────────────────────────────────────
-const TabIcon = ({ label, focused }: { label: string; focused: boolean }) => (
-  <Text style={{ fontSize: 20, color: focused ? colors.primary : colors.textHint }}>
-    {label}
-  </Text>
-);
 
 export default function MainTab() {
   return (
@@ -38,30 +27,58 @@ export default function MainTab() {
     >
       <Tab.Screen
         name="Home"
-        component={HomeScreen} // <--- GIỜ NÓ ĐÃ GỌI FILE HomeScreen.tsx XỊN
+        component={HomeScreen}
         options={{
-          tabBarIcon: ({ focused }) => <TabIcon label="⌂" focused={focused} />,
+          tabBarIcon: ({ focused }) => (
+            <Ionicons 
+              name={focused ? "home" : "home-outline"} 
+              size={24} 
+              color={focused ? colors.primary : colors.textHint}
+            />
+          ),
+          tabBarLabel: "Home",
         }}
       />
       <Tab.Screen
         name="Favorite"
-        component={FavoriteScreen} // <--- GIỜ NÓ ĐÃ GỌI FILE FavoriteScreen.tsx XỊN
+        component={FavoriteScreen}
         options={{
-          tabBarIcon: ({ focused }) => <TabIcon label="♡" focused={focused} />,
+          tabBarIcon: ({ focused }) => (
+            <Ionicons 
+              name={focused ? "heart" : "heart-outline"} 
+              size={24} 
+              color={focused ? colors.primary : colors.textHint}
+            />
+          ),
+          tabBarLabel: "Favorite",
         }}
       />
       <Tab.Screen
         name="Cart"
         component={CartScreen}
         options={{
-          tabBarIcon: ({ focused }) => <TabIcon label="⊡" focused={focused} />,
+          tabBarIcon: ({ focused }) => (
+            <Ionicons 
+              name={focused ? "bag" : "bag-outline"} 
+              size={24} 
+              color={focused ? colors.primary : colors.textHint}
+            />
+          ),
+          tabBarLabel: "Cart",
         }}
       />
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
         options={{
-          tabBarIcon: ({ focused }) => <TabIcon label="◯" focused={focused} />,
+          tabBarIcon: ({ focused }) => (
+            <Ionicons 
+              name={focused ? "person" : "person-outline"} 
+              size={24} 
+              color={focused ? colors.primary : colors.textHint}
+            />
+          ),
+          tabBarLabel: "Profile",
         }}
       />
     </Tab.Navigator>

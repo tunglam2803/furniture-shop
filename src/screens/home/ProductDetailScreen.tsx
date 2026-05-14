@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-// IMPORT STORE CỦA HUY Ở ĐÂY
+// IMPORT STORE CỦA HUY
 import { useFavouriteStore } from '../../store/favoriteStore'; 
+// IMPORT STORE GIỎ HÀNG CỦA LỘC
+import { useCartStore } from '../../store/cartStore';
 
 const COLORS = ['#FFFFFF', '#B4916C', '#E4CBAD'];
 
 const DetailScreen = ({ navigation, route }: any) => {
-  // 1. Lấy dữ liệu sản phẩm truyền từ Home sang
-  // Nếu route.params trống thì lấy tạm data mặc định để tránh crash
   const product = route.params?.product || {
     id: '1',
     name: 'Minimal Stand',
@@ -20,18 +20,28 @@ const DetailScreen = ({ navigation, route }: any) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState(COLORS[1]);
 
-  // 2. Kết nối với Store
   const { favorites, toggleFavorite } = useFavouriteStore();
-  
-  // Kiểm tra xem sản phẩm này đã nằm trong danh sách yêu thích chưa
   const isFav = favorites.some((item: any) => item.id === product.id);
+
+  const { addToCart } = useCartStore();
+
+  const handleAddToCart = () => {
+    for (let i = 0; i < quantity; i++) {
+      addToCart({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image
+      });
+    }
+    alert('Đã thêm vào giỏ hàng!');
+  };
 
   return (
     <View style={styles.container}>
-      {/* 1. VÙNG ẢNH LỚN & NÚT BACK */}
       <View style={styles.imageSection}>
         <Image 
-          source={{ uri: product.image }} // Dùng ảnh từ product
+          source={{ uri: product.image }} 
           style={styles.mainImage} 
         />
         
@@ -54,12 +64,12 @@ const DetailScreen = ({ navigation, route }: any) => {
         </View>
       </View>
 
-      {/* 2. PHẦN THÔNG TIN SẢN PHẨM */}
       <ScrollView style={styles.infoSection} showsVerticalScrollIndicator={false}>
         <Text style={styles.productName}>{product.name}</Text>
         
         <View style={styles.priceRow}>
-          <Text style={styles.priceText}>$ {product.price.toFixed(2)}</Text>
+          {/* ĐÃ SỬA GIÁ TIỀN NHÂN VỚI SỐ LƯỢNG Ở ĐÂY */}
+          <Text style={styles.priceText}>$ {(product.price * quantity).toFixed(2)}</Text>
           <View style={styles.quantityContainer}>
             <TouchableOpacity style={styles.qtyBtn} onPress={() => quantity > 1 && setQuantity(quantity - 1)}>
               <Ionicons name="remove" size={20} color="black" />
@@ -82,23 +92,22 @@ const DetailScreen = ({ navigation, route }: any) => {
         </Text>
       </ScrollView>
 
-      {/* 3. VÙNG NÚT HÀNH ĐỘNG - NƠI THAY ĐỔI LOGIC */}
       <View style={styles.footer}>
         <TouchableOpacity 
           style={[
             styles.bookmarkBtn, 
-            { backgroundColor: isFav ? '#303030' : '#F5F5F5' } // Đổi màu nền khi active
+            { backgroundColor: isFav ? '#303030' : '#F5F5F5' } 
           ]}
-          onPress={() => toggleFavorite(product)} // GỌI HÀM TOGGLE TỪ STORE
+          onPress={() => toggleFavorite(product)} 
         >
           <Ionicons 
-            name={isFav ? "bookmark" : "bookmark-outline"} // Đổi icon
+            name={isFav ? "bookmark" : "bookmark-outline"} 
             size={24} 
-            color={isFav ? "#FFFFFF" : "#303030"} // Đổi màu icon
+            color={isFav ? "#FFFFFF" : "#303030"} 
           />
         </TouchableOpacity>
         
-        <TouchableOpacity style={styles.addToCartBtn}>
+        <TouchableOpacity style={styles.addToCartBtn} onPress={handleAddToCart}>
           <Text style={styles.addToCartText}>Add to cart</Text>
         </TouchableOpacity>
       </View>
@@ -106,7 +115,6 @@ const DetailScreen = ({ navigation, route }: any) => {
   );
 };
 
-// ... Styles giữ nguyên như code cũ của Huy
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#FFFFFF' },
   imageSection: { width: '100%', height: '45%', position: 'relative' },

@@ -33,6 +33,8 @@
 
 ---
 
+**Link design figma:** [Xem tại đây »](https://www.figma.com/design/FvsUaaxCcHWxmQJoZrX1IL/design-mobile-app?node-id=0-1&t=92H1HySo6riAfPTj-0)
+
 ### 👨‍💻 Dev Lâm | Foundation + Auth (3 màn)
 
 #### 🔧 Setup dự án

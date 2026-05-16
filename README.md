@@ -305,7 +305,7 @@ Sau đó:
 
 ## 🎬 Video Demo
 
-▶️ **Link video demo:** [Xem tại đây »](https://[your-video-link])
+▶️ **Link video demo:** [Xem tại đây »](https://www.youtube.com/shorts/PN0pSfneq5E)
 
 ## 📁 Cấu trúc thư mục
 
